@@ -51,5 +51,6 @@ module.exports = {
   insertUser,
   findPassword,
   insertImage,
-  findImage
+  findImage,
+  deleteImage
 };

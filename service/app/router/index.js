@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const router = new Router();
-const { findUser, insertUser, findPassword, insertImage, findImage } = require('../model/model');
+const { findUser, insertUser, findPassword, insertImage, findImage, deleteImage } = require('../model/model');
 // const login = require('./user/login');
 const { getToken, getJWTPayload } = require('../../conf/jwt');
 const { md5 } = require('../utils/utils');
@@ -21,6 +21,21 @@ router.post('/api/allpic', async (ctx, next) => {
   const list = await findImage(user.userId);
   console.log(list)
   ctx.body = {message:'查询成功',code: '0000', state: 1, data: list[0] };
+});
+
+router.post('/api/del', async (ctx, next) => {
+  const {id} = ctx.request.body;
+  if(!id){
+    ctx.body = {message:'字段不存在',code: '0000', state: 0};
+    return 
+  }
+  const user = getJWTPayload(ctx.header.authorization);
+  if(!user.userId){
+    ctx.body = {message:'未登录',code: '0000', state: 0};
+    return false
+  }
+  const list = await deleteImage(id);
+  ctx.body = {message:'删除成功',code: '0000', state: 1};
 });
 
 router.post('/api/login', async (ctx, next) => {
