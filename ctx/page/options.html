@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-    options
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>图片收藏</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/allpic.css" />
+    <style>
+      body{margin: 0}
+    </style>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div class="container" id="app">
+      <div class="user-image">
+        <div class="image-block" v-for="(group,index) in imageList" v-bind:key="index">
+          <div class="title">
+            <p>{{group.from_path}}</p>
+            <p>{{group.create_date}}</p>
+          </div>
+          <ul class="image-list">
+            <li class="image-list-child" v-for="(item,i) in group" v-bind:key="i+item.from_path">
+              <div class="img" :style="`background-image:url('${item.url}')`"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="../js/option.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  </body>
 </html>

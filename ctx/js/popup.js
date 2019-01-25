@@ -1,6 +1,5 @@
 $(function() {
-  chrome.storage.sync.get({ rxToken: null }, function(items) {
-    console.log(items.rxToken)
+  chrome.storage.local.get({ rxToken: null }, function(items) {
     if (!items.rxToken) {
       $('.list-content').hide();
       $('.login-content').show();
@@ -13,12 +12,19 @@ $(function() {
     chrome.tabs.create({ url: 'http://localhost:3000/registered' });
   });
   $('#logout').click(function(){
-    chrome.storage.sync.set({ rxToken: null }, function() {
+    chrome.storage.local.set({ rxToken: null }, function() {
       $('.list-content').hide();
       $('.login-content').show();
+      window.localStorage.removeItem('rxToken')
       console.log('已退出');
     });
   })
+
+  $('#allpic').click(function(){
+    event.preventDefault();
+    chrome.tabs.create({url: chrome.extension.getURL('dist/index.html')});
+  })
+
   $('.rx-btn-login').click(function() {
     const username = $('#username').val();
     const password = $('#password').val();
@@ -31,7 +37,8 @@ $(function() {
       if(res.state === 1){
         $('.list-content').show();
         $('.login-content').hide();
-        chrome.storage.sync.set({ rxToken: res.data.token }, function() {
+        chrome.storage.local.set({ rxToken: res.data.token }, function() {
+          window.localStorage.setItem('rxToken', res.data.token)
           console.log('保存成功！');
         });
       }

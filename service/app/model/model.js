@@ -22,6 +22,26 @@ const insertImage = (userId, imgSrc, from_path) => {
   })
 };
 
+const findImage = (userId) => {
+  return sequelize.query(`select * from save_image where userId=${userId} and isShow=1`,{
+    raw:false
+  })
+};
+
+const findAllImage = (userId) => {
+  return sequelize.query(`select * from save_image where userId=${userId}`,{
+    raw:false,
+    type: "select"
+  })
+};
+
+const deleteImage = (id) => {
+  return sequelize.query(`update save_image set isShow=0 where id = ${id}`,{
+    raw:false,
+    type: "update"
+  })
+};
+
 const findPassword = (username,password) => {
   return saveUser.findOne({ where: { user_name: username, pass_word: password } })
 };
@@ -30,5 +50,6 @@ module.exports = {
   findUser,
   insertUser,
   findPassword,
-  insertImage
+  insertImage,
+  findImage
 };

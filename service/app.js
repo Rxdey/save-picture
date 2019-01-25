@@ -72,7 +72,7 @@ app
   })
   .use(
     koaJwt({ secret: jwtSecret }).unless({
-      path: [/registered/, /\//, /findpassword/]
+      path: [/registered/, /findpassword/, /login/, '/']
     })
   )
   .use(router.routes())
