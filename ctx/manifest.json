@@ -1,26 +1,27 @@
 {
-  "manifest_version": 2,
-  "name": "图片收藏",
-  "version": "1.0.0",
-  "description": "图片收藏",
-  "icons": {
-    "16": "img/icon.png",
-    "48": "img/icon.png",
-    "128": "img/icon.png"
-  },
-  "background": {
-    "page": "background.html"
-  },
-  "options_page": "dist/index.html",
-  "browser_action": {
-    "default_icon": "img/icon.png",
-    "default_title": "图片收藏",
-    "default_popup": "page/popup.html"
-  },
-  "options_ui": {
-    "page": "dist/index.html",
-    "chrome_style": true
-  },
-  "permissions": ["contextMenus", "notifications", "storage", "tabs","http://*/*"],
-  "homepage_url": "http://www.rxdey.xyz"
+   "background": {
+      "page": "background.html"
+   },
+   "browser_action": {
+      "default_icon": "img/icon.png",
+      "default_popup": "page/popup.html",
+      "default_title": "图片收藏"
+   },
+   "description": "图片收藏",
+   "homepage_url": "http://www.rxdey.xyz",
+   "icons": {
+      "128": "img/icon.png",
+      "16": "img/icon.png",
+      "48": "img/icon.png"
+   },
+   "manifest_version": 2,
+   "name": "图片收藏",
+   "options_page": "dist/index.html",
+   "options_ui": {
+      "chrome_style": true,
+      "page": "dist/index.html"
+   },
+   "permissions": [ "contextMenus", "storage" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.0.2"
 }
