@@ -6,7 +6,7 @@ const { getToken, getJWTPayload } = require('../../conf/jwt');
 const { md5 } = require('../utils/utils');
 // let msg = { message: '', code: '00000', data: null, state: 1 };
 
-router.get('/home', async (ctx, next) => {
+router.get('/', async (ctx, next) => {
   let title = 'api';
   await ctx.render('index', {
     title
